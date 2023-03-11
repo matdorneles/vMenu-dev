@@ -758,7 +758,7 @@ namespace vMenuClient
                 // Kick the player using the specified reason.
                 TriggerServerEvent("vMenu:KickPlayer", player.ServerId, defaultReason);
                 Log($"Attempting to kick player {player.Name} (server id: {player.ServerId}, client id: {player.Handle}).");
-                TriggerServerEvent("LogToDiscord", "staff", $" kicked {player.Name}, id: {player.Handle}.");
+                TriggerServerEvent("LogToDiscord", "staff", $" kicked {player.Name}, id: {player.Handle}, for {defaultReason}");
             }
             else
             {
@@ -792,7 +792,7 @@ namespace vMenuClient
                             if (banHours > 0.0)
                             {
                                 TriggerServerEvent("vMenu:TempBanPlayer", player.ServerId, banHours, banReason);
-                                TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} has been banned by {Game.Player.Name}, {Game.Player.Handle}");
+                                TriggerServerEvent("LogToDiscord", "staff", $" banned {player.Name}, id: {player.Handle}, for {banReason}");
                             }
                             else
                                 Notify.Error("You need to enter a ban duration, enter a value ~h~between~h~ 1 and 720!");
@@ -804,7 +804,7 @@ namespace vMenuClient
                                 if ((double)banHoursInt > 0.0)
                                 {
                                     TriggerServerEvent("vMenu:TempBanPlayer", player.ServerId, (double)banHoursInt, banReason);
-                                    TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} has been banned by {Game.Player.Name}, {Game.Player.Handle}");
+                                    TriggerServerEvent("LogToDiscord", "staff", $" banned {player.Name}, id: {player.Handle}, for {banReason}");
                                 }
                                 else
                                     Notify.Error("You need to enter a ban duration, enter a value ~h~between~h~ 1 and 720!");
@@ -1034,7 +1034,7 @@ namespace vMenuClient
                             DoScreenFadeIn(500);
                             Notify.Success($"You are now spectating ~g~<C>{GetSafePlayerName(player.Name)}</C>~s~.", false, true);
                             currentlySpectatingPlayer = player.Handle;
-                            TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} is being spectated by {Game.Player.Name}, {Game.Player.Handle}");
+                            TriggerServerEvent("LogToDiscord", "staff", $"is spectating {player.Name}, server id: {player.ServerId}.");
                         }
                         else
                         {
@@ -1044,7 +1044,7 @@ namespace vMenuClient
                             DoScreenFadeIn(500);
                             Notify.Success("Stopped spectating.", false, true);
                             currentlySpectatingPlayer = -1;
-                            TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} is **NOT** being spectated by {Game.Player.Name}, {Game.Player.Handle}");
+                            TriggerServerEvent("LogToDiscord", "staff", $"is no longer spectating {player.Name}, server id: {player.ServerId}.");
                         }
                     }
                     else
@@ -1063,6 +1063,7 @@ namespace vMenuClient
                             DoScreenFadeIn(500);
                             Notify.Success($"You are now spectating ~g~<C>{GetSafePlayerName(player.Name)}</C>~s~.", false, true);
                             currentlySpectatingPlayer = player.Handle;
+                            TriggerServerEvent("LogToDiscord", "staff", $"is spectating {player.Name}, server id: {player.ServerId}.");
                         }
                     }
                 }
