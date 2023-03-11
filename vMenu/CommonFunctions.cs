@@ -758,6 +758,7 @@ namespace vMenuClient
                 // Kick the player using the specified reason.
                 TriggerServerEvent("vMenu:KickPlayer", player.ServerId, defaultReason);
                 Log($"Attempting to kick player {player.Name} (server id: {player.ServerId}, client id: {player.Handle}).");
+                TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} has been kicked by {Game.Player.Name}, {Game.Player.Handle}");
             }
             else
             {
@@ -789,7 +790,10 @@ namespace vMenuClient
                         if (double.TryParse(banDurationHours, out double banHours))
                         {
                             if (banHours > 0.0)
+                            {
                                 TriggerServerEvent("vMenu:TempBanPlayer", player.ServerId, banHours, banReason);
+                                TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} has been banned by {Game.Player.Name}, {Game.Player.Handle}");
+                            }
                             else
                                 Notify.Error("You need to enter a ban duration, enter a value ~h~between~h~ 1 and 720!");
                         }
@@ -798,7 +802,10 @@ namespace vMenuClient
                             if (int.TryParse(banDurationHours, out int banHoursInt))
                             {
                                 if ((double)banHoursInt > 0.0)
+                                {
                                     TriggerServerEvent("vMenu:TempBanPlayer", player.ServerId, (double)banHoursInt, banReason);
+                                    TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} has been banned by {Game.Player.Name}, {Game.Player.Handle}");
+                                }
                                 else
                                     Notify.Error("You need to enter a ban duration, enter a value ~h~between~h~ 1 and 720!");
                             }
@@ -1027,6 +1034,7 @@ namespace vMenuClient
                             DoScreenFadeIn(500);
                             Notify.Success($"You are now spectating ~g~<C>{GetSafePlayerName(player.Name)}</C>~s~.", false, true);
                             currentlySpectatingPlayer = player.Handle;
+                            TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} is being spectated by {Game.Player.Name}, {Game.Player.Handle}");
                         }
                         else
                         {
@@ -1036,6 +1044,7 @@ namespace vMenuClient
                             DoScreenFadeIn(500);
                             Notify.Success("Stopped spectating.", false, true);
                             currentlySpectatingPlayer = -1;
+                            TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} is **NOT** being spectated by {Game.Player.Name}, {Game.Player.Handle}");
                         }
                     }
                     else
@@ -1296,7 +1305,7 @@ namespace vMenuClient
             Log($"New vehicle, hash:{vehicleHash}, handle:{vehicle.Handle}, force-re-save-name:{(saveName ?? "NONE")}, created at x:{pos.X} y:{pos.Y} z:{(pos.Z + 1f)} " +
                 $"heading:{heading}");
 
-            TriggerServerEvent("LogToDiscord", "vehicle", $"{Game.Player.Name}, ID {Game.Player.ServerId} has spawned a {vehicle.DisplayName}");
+            TriggerServerEvent("LogToDiscord", "vehicle", $"has spawned a new {vehicle.DisplayName}");
 
             // If spawnInside is true
             if (spawnInside)

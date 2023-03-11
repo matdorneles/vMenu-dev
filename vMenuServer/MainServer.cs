@@ -987,7 +987,14 @@ namespace vMenuServer
         [EventHandler("LogToDiscord")]
         private void onVehicleLog([FromSource] Player sourcePlayer, string caller, string msg)
         {
-            DiscordLogs.FiveMHttpRequests.SendWebhook(caller, msg, DiscordLogs.FiveMHttpRequests.DiscordEmbed("vMenu Police", "1127128", msg, "In testing"));
+            string content = msg;
+            string[] getDiscordId = GetPlayerIdentifier(sourcePlayer.Handle, 3).Split(':');
+            string discordId = $"**Discord ID:** {getDiscordId[1]} | <@{getDiscordId[1]}>\n";
+            string playerName = $"**Player Name: **{sourcePlayer.Name}\n";
+            string action = $"**Action** {msg}\n";
+            string field = playerName + discordId + action;
+            
+            DiscordLogs.FiveMHttpRequests.SendWebhook(caller, "=== NEW LOG ===", DiscordLogs.FiveMHttpRequests.DiscordEmbed("Ocean Breeze vMenu Police", field, "In development"));
         }
         #endregion
     }

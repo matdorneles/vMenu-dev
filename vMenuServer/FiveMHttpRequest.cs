@@ -8,6 +8,8 @@ using CitizenFX.Core.Native;
 using CitizenFX.Core;
 using Newtonsoft.Json;
 using DiscordWebhook;
+using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
 
 namespace DiscordLogs
 {
@@ -70,13 +72,13 @@ namespace DiscordLogs
         }
 
         // Discord stuff.
-        public static dynamic DiscordEmbed(string title, string color, string description, string footerText)
+        public static dynamic DiscordEmbed(string title, string field, string footerText)
         {
             return new
             {
                 title = title,
-                description = description,
-                color = color,
+                description = field,
+                color = "1127128",
                 footer = new
                 {
                     text = footerText
