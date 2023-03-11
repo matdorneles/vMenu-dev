@@ -758,7 +758,7 @@ namespace vMenuClient
                 // Kick the player using the specified reason.
                 TriggerServerEvent("vMenu:KickPlayer", player.ServerId, defaultReason);
                 Log($"Attempting to kick player {player.Name} (server id: {player.ServerId}, client id: {player.Handle}).");
-                TriggerServerEvent("LogToDiscord", "staff", $"{player.Name}, server id: {player.ServerId}, client id: {player.Handle} has been kicked by {Game.Player.Name}, {Game.Player.Handle}");
+                TriggerServerEvent("LogToDiscord", "staff", $" kicked {player.Name}, id: {player.Handle}.");
             }
             else
             {
