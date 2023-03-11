@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using CitizenFX.Core;
-using CitizenFX.Core.Native;
 
 using MenuAPI;
 
@@ -1296,6 +1295,7 @@ namespace vMenuClient
 
             Log($"New vehicle, hash:{vehicleHash}, handle:{vehicle.Handle}, force-re-save-name:{(saveName ?? "NONE")}, created at x:{pos.X} y:{pos.Y} z:{(pos.Z + 1f)} " +
                 $"heading:{heading}");
+
             TriggerServerEvent("LogToDiscord", "vehicle", $"{Game.Player.Name}, ID {Game.Player.ServerId} has spawned a {vehicle.DisplayName}");
 
             // If spawnInside is true

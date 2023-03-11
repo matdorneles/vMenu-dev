@@ -990,6 +990,5 @@ namespace vMenuServer
             DiscordLogs.FiveMHttpRequests.SendWebhook(caller, msg, DiscordLogs.FiveMHttpRequests.DiscordEmbed("vMenu Police", "1127128", msg, "In testing"));
         }
         #endregion
-
     }
 }
