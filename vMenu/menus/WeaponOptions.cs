@@ -447,7 +447,7 @@ namespace vMenuClient
                             {
                                 RemoveWeaponFromPed(Game.PlayerPed.Handle, hash);
                                 Subtitle.Custom("Weapon removed.");
-                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **removed** a {info}");
+                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **removed** a {hash}");
                             }
                             else
                             {
@@ -455,7 +455,7 @@ namespace vMenuClient
                                 GetMaxAmmo(Game.PlayerPed.Handle, hash, ref ammo);
                                 GiveWeaponToPed(Game.PlayerPed.Handle, hash, ammo, false, true);
                                 Subtitle.Custom("Weapon added.");
-                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **added** a {info}");
+                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **added** a {sender}");
                             }
                         }
                         else if (item == fillAmmo)
