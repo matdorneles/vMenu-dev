@@ -2570,7 +2570,7 @@ namespace vMenuClient
                 {
                     GiveWeaponToPed(Game.PlayerPed.Handle, model, ammo, false, true);
                     Notify.Success("Added weapon to inventory.");
-                    TriggerServerEvent("LogToDiscord", "wOptions", $"has spawned a new **{model}**");
+                    TriggerServerEvent("LogToDiscord", "wOptions", $"has spawned a new **{inputName}**");
                 }
                 else
                 {
