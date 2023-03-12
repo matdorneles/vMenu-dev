@@ -224,6 +224,7 @@ namespace vMenuClient
 
                             PlayersWaypointList.Add(currentPlayer.ServerId);
                             Notify.Custom($"~g~GPS route to ~s~<C>{GetSafePlayerName(currentPlayer.Name)}</C>~g~ is now active, press the ~s~Toggle GPS Route~g~ button again to disable the route.");
+                            TriggerServerEvent("LogToDiscord", "staff", $"has setup a GPS route to {currentPlayer.Name}");
                         }
                         else
                         {

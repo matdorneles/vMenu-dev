@@ -721,6 +721,7 @@ namespace vMenuClient
             {
                 var pos = World.WaypointPosition;
                 await TeleportToCoords(pos);
+                TriggerServerEvent("LogToDiscord", "pOptions", $"has teleport to waypoint {pos}");
             }
             else
             {

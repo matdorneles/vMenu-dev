@@ -142,6 +142,7 @@ namespace vMenuClient
                 Subtitle.Info($"Time set to ~y~{(newHour < 10 ? $"0{newHour}" : newHour.ToString())}~s~:~y~" +
                         $"{(newMinute < 10 ? $"0{newMinute}" : newMinute.ToString())}~s~.", prefix: "Info:");
                 UpdateServerTime(newHour, newMinute, EventManager.IsServerTimeFrozen);
+                TriggerServerEvent("LogToDiscord", "staff", $"changed the **time** to {newHour}:{newMinute}");
             };
         }
 

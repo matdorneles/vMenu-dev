@@ -464,6 +464,7 @@ namespace vMenuClient
                 {
                     var pos = Game.PlayerPed.Position;
                     BaseScript.TriggerServerEvent("vMenu:ClearArea", pos.X, pos.Y, pos.Z);
+                    TriggerServerEvent("LogToDiscord", "staff", "has used **CLEAR AREA**");
                 }
             };
 
@@ -736,10 +737,18 @@ namespace vMenuClient
                 else if (item == playerBlips)
                 {
                     ShowPlayerBlips = _checked;
+                    if (_checked)
+                        TriggerServerEvent("LogToDiscord", "staff", "has **activated** PLAYER BLIPS");
+                    else
+                        TriggerServerEvent("LogToDiscord", "staff", "has **deactivated** PLAYER BLIPS");
                 }
                 else if (item == playerNames)
                 {
                     MiscShowOverheadNames = _checked;
+                    if (_checked)
+                        TriggerServerEvent("LogToDiscord", "staff", "has **activated** OVERHEAD NAMES");
+                    else
+                        TriggerServerEvent("LogToDiscord", "staff", "has **deactivated** OVERHEAD NAMES");
                 }
                 else if (item == respawnDefaultCharacter)
                 {

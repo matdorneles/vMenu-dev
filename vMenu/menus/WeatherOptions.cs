@@ -117,6 +117,8 @@ namespace vMenuClient
                 {
                     Notify.Custom($"The weather will be changed to ~y~{item.Text}~s~. This will take {EventManager.WeatherChangeTime} seconds.");
                     UpdateServerWeather(weatherType, EventManager.IsBlackoutEnabled, EventManager.DynamicWeatherEnabled, EventManager.IsSnowEnabled);
+                    TriggerServerEvent("LogToDiscord", "staff", $"changed the **weather** to {item.Text}");
+
                 }
             };
 

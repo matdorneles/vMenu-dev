@@ -10,6 +10,7 @@ using static CitizenFX.Core.UI.Screen;
 using static CitizenFX.Core.Native.API;
 using static vMenuClient.CommonFunctions;
 using static vMenuShared.PermissionsManager;
+using System.Xml.Linq;
 
 namespace vMenuClient
 {
@@ -1787,6 +1788,7 @@ namespace vMenuClient
 
                     // Create the MenuListItem for this mod type.
                     var currIndex = GetVehicleMod(veh.Handle, (int)mod.ModType) + 1;
+
                     MenuListItem modTypeListItem = new MenuListItem(
                         typeName,
                         modlist,
@@ -1933,11 +1935,19 @@ namespace vMenuClient
                     else if (item2 == turbo)
                     {
                         ToggleVehicleMod(veh.Handle, 18, _checked);
+                        if (_checked)
+                            TriggerServerEvent("LogToDiscord", "wOptions", $"has **activated** TURBO on a {veh.DisplayName}");
+                        else
+                            TriggerServerEvent("LogToDiscord", "wOptions", $"has **deactivated** TURBO on a {veh.DisplayName}");
                     }
                     // Bullet Proof Tires
                     else if (item2 == bulletProofTires)
                     {
                         SetVehicleTyresCanBurst(veh.Handle, !_checked);
+                        if (_checked)
+                            TriggerServerEvent("LogToDiscord", "wOptions", "has **activated** BULLETPROOF TIRES");
+                        else
+                            TriggerServerEvent("LogToDiscord", "wOptions", "has **deactivated** BULLETPROOF TIRES");
                     }
                     // Custom Wheels
                     else if (item2 == toggleCustomWheels)
