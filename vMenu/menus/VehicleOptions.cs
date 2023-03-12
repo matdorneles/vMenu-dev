@@ -557,9 +557,9 @@ namespace vMenuClient
                     VehicleGodMode = _checked;
                     if (VehicleGodMode = true)
                     {
-                        TriggerServerEvent("vehOptions", "activated **Vehicle God Mode**");
+                        TriggerServerEvent("LogToDiscord", "vehOptions", "activated **Vehicle God Mode**");
                     }
-                    TriggerServerEvent("vehOptions", "deactivated **Vehicle God Mode**");
+                    TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **Vehicle God Mode**");
                 }
                 else if (item == vehicleFreeze) // Freeze Vehicle Toggled
                 {
@@ -577,9 +577,9 @@ namespace vMenuClient
                     VehicleTorqueMultiplier = _checked;
                     if (VehicleTorqueMultiplier = true)
                     {
-                        TriggerServerEvent("vehOptions", "activated **torque multiplier**");
+                        TriggerServerEvent("LogToDiscord", "vehOptions", "activated **torque multiplier**");
                     }
-                    TriggerServerEvent("vehOptions", "deactivated **torque multiplier**");
+                    TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **torque multiplier**");
                 }
                 else if (item == powerEnabled) // Enable Power Multiplier Toggled
                 {
@@ -589,7 +589,7 @@ namespace vMenuClient
                         if (vehicle != null && vehicle.Exists())
                         {
                             SetVehicleEnginePowerMultiplier(vehicle.Handle, VehiclePowerMultiplierAmount);
-                            TriggerServerEvent("vehOptions", "activated **power multiplier**");
+                            TriggerServerEvent("LogToDiscord", "vehOptions", "activated **power multiplier**");
 
                         }
                     }
@@ -598,7 +598,7 @@ namespace vMenuClient
                         if (vehicle != null && vehicle.Exists())
                         {
                             SetVehicleEnginePowerMultiplier(vehicle.Handle, 1f);
-                            TriggerServerEvent("vehOptions", "deactivated **power multiplier**");
+                            TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **power multiplier**");
                         }
                     }
                 }
