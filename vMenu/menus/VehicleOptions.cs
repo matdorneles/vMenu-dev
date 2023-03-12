@@ -556,13 +556,9 @@ namespace vMenuClient
                 {
                     VehicleGodMode = _checked;
                     if (VehicleGodMode == true)
-                    {
                         TriggerServerEvent("LogToDiscord", "vehOptions", "activated **Vehicle God Mode**");
-                    } 
                     else
-                    {
                         TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **Vehicle God Mode**");
-                    }
                 }
                 else if (item == vehicleFreeze) // Freeze Vehicle Toggled
                 {
@@ -579,13 +575,9 @@ namespace vMenuClient
                 {
                     VehicleTorqueMultiplier = _checked;
                     if (VehicleTorqueMultiplier == true)
-                    {
                         TriggerServerEvent("LogToDiscord", "vehOptions", "activated **torque multiplier**");
-                    } 
                     else
-                    {
                         TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **torque multiplier**");
-                    }
                 }
                 else if (item == powerEnabled) // Enable Power Multiplier Toggled
                 {

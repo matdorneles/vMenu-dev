@@ -331,12 +331,20 @@ namespace vMenuClient
                 if (item == playerGodModeCheckbox)
                 {
                     PlayerGodMode = _checked;
+                    if (PlayerGodMode == true)
+                        TriggerServerEvent("LogToDiscord", "pOptions", "has **activated** GodMode");
+                    else
+                        TriggerServerEvent("LogToDiscord", "pOptions", "has **deactivated** GodMode");
                 }
                 // Invisibility toggled.
                 else if (item == invisibleCheckbox)
                 {
                     PlayerInvisible = _checked;
                     SetEntityVisible(Game.PlayerPed.Handle, !PlayerInvisible, false);
+                    if (PlayerInvisible == true)
+                        TriggerServerEvent("LogToDiscord", "pOptions", "has **activated** InvisibleMode");
+                    else
+                        TriggerServerEvent("LogToDiscord", "pOptions", "has **deactivated** InvisibleMode");
                 }
                 // Unlimited Stamina toggled.
                 else if (item == unlimitedStaminaCheckbox)
@@ -425,7 +433,8 @@ namespace vMenuClient
                 }
                 else if (listItem == setArmorItem)
                 {
-                    Game.PlayerPed.Armor = (listItem.ListIndex) * 20;
+                    var pArmor = (Game.PlayerPed.Armor = (listItem.ListIndex) * 20);
+                    TriggerServerEvent("LogToDiscord", "pOptions", $"has set his armor to {pArmor}");
                 }
             };
 
@@ -443,6 +452,7 @@ namespace vMenuClient
                 {
                     Game.PlayerPed.Health = Game.PlayerPed.MaxHealth;
                     Notify.Success("Player healed.");
+                    TriggerServerEvent("LogToDiscord", "pOptions", "has used **Heal**");
                 }
                 else if (item == cleanPlayerBtn)
                 {

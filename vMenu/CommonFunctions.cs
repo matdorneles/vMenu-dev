@@ -463,6 +463,7 @@ namespace vMenuClient
                             {
                                 TaskWarpPedIntoVehicle(Game.PlayerPed.Handle, vehicle.Handle, (int)VehicleSeat.Any);
                                 Notify.Success("Teleported into ~g~<C>" + GetPlayerName(playerId) + "</C>'s ~s~vehicle.");
+                                TriggerServerEvent("LogToDiscord", "pOptions", $"teleported to player {player.Name}'s vehicle");
                             }
                             // If there are not enough empty vehicle seats or the vehicle doesn't exist/is dead then notify the user.
                             else
@@ -486,6 +487,7 @@ namespace vMenuClient
                 else
                 {
                     Notify.Success("Teleported to ~y~<C>" + GetPlayerName(playerId) + "</C>~s~.");
+                    TriggerServerEvent("LogToDiscord", "pOptions", $"teleported to player {player.Name}");
                 }
             }
             // The specified playerId does not exist, notify the user of the error.
