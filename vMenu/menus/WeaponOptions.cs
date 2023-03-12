@@ -447,7 +447,7 @@ namespace vMenuClient
                             {
                                 RemoveWeaponFromPed(Game.PlayerPed.Handle, hash);
                                 Subtitle.Custom("Weapon removed.");
-                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **removed** a {hash}");
+                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **removed** a {info.Name}");
                             }
                             else
                             {
@@ -455,7 +455,7 @@ namespace vMenuClient
                                 GetMaxAmmo(Game.PlayerPed.Handle, hash, ref ammo);
                                 GiveWeaponToPed(Game.PlayerPed.Handle, hash, ammo, false, true);
                                 Subtitle.Custom("Weapon added.");
-                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **added** a {sender}");
+                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **added** a {info.Name}");
                             }
                         }
                         else if (item == fillAmmo)
@@ -465,7 +465,7 @@ namespace vMenuClient
                                 var ammo = 900;
                                 GetMaxAmmo(Game.PlayerPed.Handle, hash, ref ammo);
                                 SetPedAmmo(Game.PlayerPed.Handle, hash, ammo);
-                                TriggerServerEvent("LogToDiscord", "wOptions", $"has used **fill ammo** on his {info}");
+                                TriggerServerEvent("LogToDiscord", "wOptions", $"has used **fill ammo** on his {info.Name}");
                             }
                             else
                             {
@@ -502,7 +502,7 @@ namespace vMenuClient
                                                 RemoveWeaponComponentFromPed(Game.PlayerPed.Handle, Weapon.Hash, componentHash);
 
                                                 Subtitle.Custom("Component removed.");
-                                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **removed** the component **{componentHash}** to his **{Weapon.Hash}**");
+                                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **removed** the component **{comp.Key}** to his **{Weapon.Name}**");
                                             }
                                             else
                                             {
@@ -517,7 +517,7 @@ namespace vMenuClient
 
                                                 SetPedAmmo(Game.PlayerPed.Handle, Weapon.Hash, ammo);
                                                 Subtitle.Custom("Component equiped.");
-                                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **added** the component **{componentHash}** to his **{Weapon.Hash}**");
+                                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **equiped** the component **{comp.Key}** to his **{Weapon.Name}**");
                                             }
                                         }
                                         else

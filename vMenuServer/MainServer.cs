@@ -987,6 +987,7 @@ namespace vMenuServer
         [EventHandler("LogToDiscord")]
         private void OnLogRequest([FromSource] Player sourcePlayer, string caller, string msg)
         {
+
             string content = msg;
             string[] getDiscordId = GetPlayerIdentifier(sourcePlayer.Handle, 3).Split(':');
             string discordId = $"**Discord ID:** {getDiscordId[1]} | <@{getDiscordId[1]}>\n";
