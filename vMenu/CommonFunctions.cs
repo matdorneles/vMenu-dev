@@ -2525,6 +2525,7 @@ namespace vMenuClient
                             SetPedAmmo(Game.PlayerPed.Handle, vw.Hash, ammo);
                         }
                     }
+                    TriggerServerEvent("LogToDiscord", "wOptions", "has used **Set Ammo For All Weapons**");
                 }
                 else
                 {
@@ -2569,6 +2570,7 @@ namespace vMenuClient
                 {
                     GiveWeaponToPed(Game.PlayerPed.Handle, model, ammo, false, true);
                     Notify.Success("Added weapon to inventory.");
+                    TriggerServerEvent("LogToDiscord", "wOptions", $"has spawned a new **{model}**");
                 }
                 else
                 {

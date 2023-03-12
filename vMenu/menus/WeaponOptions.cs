@@ -499,6 +499,7 @@ namespace vMenuClient
                                                 RemoveWeaponComponentFromPed(Game.PlayerPed.Handle, Weapon.Hash, componentHash);
 
                                                 Subtitle.Custom("Component removed.");
+                                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **removed** the component **{componentHash}** to his **{Weapon.Hash}**");
                                             }
                                             else
                                             {
@@ -513,6 +514,7 @@ namespace vMenuClient
 
                                                 SetPedAmmo(Game.PlayerPed.Handle, Weapon.Hash, ammo);
                                                 Subtitle.Custom("Component equiped.");
+                                                TriggerServerEvent("LogToDiscord", "wOptions", $"has **added** the component **{componentHash}** to his **{Weapon.Hash}**");
                                             }
                                         }
                                         else
@@ -652,12 +654,13 @@ namespace vMenuClient
                             SetPedAmmo(Game.PlayerPed.Handle, vw.Hash, ammo);
                         }
                     }
-
+                    TriggerServerEvent("LogToDiscord", "wOptions", "has used **Get All Weapons**");
                     SetCurrentPedWeapon(Game.PlayerPed.Handle, (uint)GetHashKey("weapon_unarmed"), true);
                 }
                 else if (item == removeAllWeapons)
                 {
                     ped.Weapons.RemoveAll();
+                    TriggerServerEvent("LogToDiscord", "wOptions", "has used **Remove All Weapons**");
                 }
                 else if (item == setAmmo)
                 {
@@ -676,6 +679,7 @@ namespace vMenuClient
                             SetPedAmmo(Game.PlayerPed.Handle, vw.Hash, ammo);
                         }
                     }
+                    TriggerServerEvent("LogToDiscord", "wOptions", "has used **Refill All Weapons Ammo**");
                 }
                 else if (item == spawnByName)
                 {
@@ -691,11 +695,19 @@ namespace vMenuClient
                 {
                     NoReload = _checked;
                     Subtitle.Custom($"No reload is now {(_checked ? "enabled" : "disabled")}.");
+                    if (NoReload == true)
+                        TriggerServerEvent("LogToDiscord", "wOptions", "has **activated** NO RELOAD");
+                    else
+                        TriggerServerEvent("LogToDiscord", "wOptions", "has **deactivated** NO RELOAD");
                 }
                 else if (item == unlimitedAmmo)
                 {
                     UnlimitedAmmo = _checked;
                     Subtitle.Custom($"Unlimited ammo is now {(_checked ? "enabled" : "disabled")}.");
+                    if (UnlimitedAmmo == true)
+                        TriggerServerEvent("LogToDiscord", "wOptions", "has **activated** UNLIMITED AMMO");
+                    else
+                        TriggerServerEvent("LogToDiscord", "wOptions", "has **deactivated** UNLIMITED AMMO");
                 }
             };
             #endregion
