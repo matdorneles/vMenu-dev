@@ -555,11 +555,14 @@ namespace vMenuClient
                 if (item == vehicleGod) // God Mode Toggled
                 {
                     VehicleGodMode = _checked;
-                    if (VehicleGodMode = true)
+                    if (VehicleGodMode == true)
                     {
                         TriggerServerEvent("LogToDiscord", "vehOptions", "activated **Vehicle God Mode**");
+                    } 
+                    else
+                    {
+                        TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **Vehicle God Mode**");
                     }
-                    TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **Vehicle God Mode**");
                 }
                 else if (item == vehicleFreeze) // Freeze Vehicle Toggled
                 {
@@ -575,11 +578,14 @@ namespace vMenuClient
                 else if (item == torqueEnabled) // Enable Torque Multiplier Toggled
                 {
                     VehicleTorqueMultiplier = _checked;
-                    if (VehicleTorqueMultiplier = true)
+                    if (VehicleTorqueMultiplier == true)
                     {
                         TriggerServerEvent("LogToDiscord", "vehOptions", "activated **torque multiplier**");
+                    } 
+                    else
+                    {
+                        TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **torque multiplier**");
                     }
-                    TriggerServerEvent("LogToDiscord", "vehOptions", "deactivated **torque multiplier**");
                 }
                 else if (item == powerEnabled) // Enable Power Multiplier Toggled
                 {
@@ -1530,6 +1536,10 @@ namespace vMenuClient
                 {
                     Vehicle veh = GetVehicle();
                     veh.ToggleExtra(extra, _checked);
+                    //if (veh.ToggleExtra(extra, _checked) == true)
+                    //{
+                    //    TriggerServerEvent("LogToDiscord", "vehOptions", "");
+                    //}
                 }
             };
             #endregion
