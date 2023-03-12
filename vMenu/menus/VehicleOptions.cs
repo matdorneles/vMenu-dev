@@ -476,6 +476,7 @@ namespace vMenuClient
                         if (item == fixVehicle)
                         {
                             vehicle.Repair();
+                            TriggerServerEvent("vehOptions", "activated **repair vehicle**");
                         }
                         // Clean vehicle.
                         else if (item == cleanVehicle)
@@ -554,6 +555,11 @@ namespace vMenuClient
                 if (item == vehicleGod) // God Mode Toggled
                 {
                     VehicleGodMode = _checked;
+                    if (VehicleGodMode = true)
+                    {
+                        TriggerServerEvent("vehOptions", "activated **Vehicle God Mode**");
+                    }
+                    TriggerServerEvent("vehOptions", "deactivated **Vehicle God Mode**");
                 }
                 else if (item == vehicleFreeze) // Freeze Vehicle Toggled
                 {
@@ -569,6 +575,11 @@ namespace vMenuClient
                 else if (item == torqueEnabled) // Enable Torque Multiplier Toggled
                 {
                     VehicleTorqueMultiplier = _checked;
+                    if (VehicleTorqueMultiplier = true)
+                    {
+                        TriggerServerEvent("vehOptions", "activated **torque multiplier**");
+                    }
+                    TriggerServerEvent("vehOptions", "deactivated **torque multiplier**");
                 }
                 else if (item == powerEnabled) // Enable Power Multiplier Toggled
                 {
@@ -576,12 +587,19 @@ namespace vMenuClient
                     if (_checked)
                     {
                         if (vehicle != null && vehicle.Exists())
+                        {
                             SetVehicleEnginePowerMultiplier(vehicle.Handle, VehiclePowerMultiplierAmount);
+                            TriggerServerEvent("vehOptions", "activated **power multiplier**");
+
+                        }
                     }
                     else
                     {
                         if (vehicle != null && vehicle.Exists())
+                        {
                             SetVehicleEnginePowerMultiplier(vehicle.Handle, 1f);
+                            TriggerServerEvent("vehOptions", "deactivated **power multiplier**");
+                        }
                     }
                 }
                 else if (item == vehicleEngineAO) // Leave Engine Running (vehicle always on) Toggled

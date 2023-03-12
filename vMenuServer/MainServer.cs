@@ -985,7 +985,7 @@ namespace vMenuServer
 
         #region Logs
         [EventHandler("LogToDiscord")]
-        private void onVehicleLog([FromSource] Player sourcePlayer, string caller, string msg)
+        private void OnLogRequest([FromSource] Player sourcePlayer, string caller, string msg)
         {
             string content = msg;
             string[] getDiscordId = GetPlayerIdentifier(sourcePlayer.Handle, 3).Split(':');
