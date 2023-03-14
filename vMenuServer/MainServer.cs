@@ -987,15 +987,31 @@ namespace vMenuServer
         [EventHandler("LogToDiscord")]
         private void OnLogRequest([FromSource] Player sourcePlayer, string caller, string msg)
         {
+            string discordUserId;
+            discordUserId = getDiscordId(sourcePlayer);
+            string getDiscordId(Player player)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    string[] id = GetPlayerIdentifier(sourcePlayer.Handle, i).Split(':');
+                    if (id[0] == "discord")
+                    {
+                        return id[1];
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                };
+                return "Error finding discord ID";
+            }
+            
 
-            string content = msg;
-            string[] getDiscordId = GetPlayerIdentifier(sourcePlayer.Handle, 3).Split(':');
-            string discordId = $"**Discord ID:** {getDiscordId[1]} | <@{getDiscordId[1]}>\n";
             string playerName = $"**Player Name: **{sourcePlayer.Name}\n";
             string action = $"**Action** {msg}\n";
-            string field = playerName + discordId + action;
+            string field = playerName + $"**Discord ID:** {discordUserId} | <@{discordUserId}>\n" + action;
             
-            DiscordLogs.FiveMHttpRequests.SendWebhook(caller, "=== NEW LOG ===", DiscordLogs.FiveMHttpRequests.DiscordEmbed("Ocean Breeze vMenu Police", field, "In development"));
+            DiscordLogs.FiveMHttpRequests.SendWebhook(caller, "=== NEW LOG ===", DiscordLogs.FiveMHttpRequests.DiscordEmbed("Ocean Breeze vMenu Police", field, "Testing Discord ID"));
         }
         #endregion
     }
