@@ -1765,7 +1765,7 @@ namespace vMenuClient
         /// <summary>
         /// Set the license plate text using the player's custom input.
         /// </summary>
-        public static async void SetLicensePlateCustomText()
+        public static async Task SetLicensePlateCustomText()
         {
             // Get the vehicle.
             var veh = GetVehicle();

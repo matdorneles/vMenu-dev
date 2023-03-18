@@ -29,7 +29,7 @@ namespace vMenuClient
         /// <summary>
         /// Creates the menu.
         /// </summary>
-        private void CreateMenu()
+        private async void CreateMenu()
         {
             var menuTitle = "Saved Vehicles";
             #region Create menus and submenus
@@ -91,11 +91,13 @@ namespace vMenuClient
             var spawnVehicle = new MenuItem("Spawn Vehicle", "Spawn this saved vehicle.");
             var renameVehicle = new MenuItem("Rename Vehicle", "Rename your saved vehicle.");
             var replaceVehicle = new MenuItem("~r~Replace Vehicle", "Your saved vehicle will be replaced with the vehicle you are currently sitting in. ~r~Warning: this can NOT be undone!");
+            var updateLp = new MenuItem("Update License Plate", "This will update the license plate for this vehicle");
             var deleteVehicle = new MenuItem("~r~Delete Vehicle", "~r~This will delete your saved vehicle. Warning: this can NOT be undone!");
             selectedVehicleMenu.AddMenuItem(spawnVehicle);
             selectedVehicleMenu.AddMenuItem(renameVehicle);
             selectedVehicleMenu.AddMenuItem(replaceVehicle);
             selectedVehicleMenu.AddMenuItem(deleteVehicle);
+            selectedVehicleMenu.AddMenuItem(updateLp);
 
             selectedVehicleMenu.OnMenuOpen += (sender) =>
             {
@@ -173,6 +175,16 @@ namespace vMenuClient
                     else
                     {
                         Notify.Error("You need to be in a vehicle before you can replace your old vehicle.");
+                    }
+                }
+                else if (item == updateLp)
+                {
+                    if (Game.PlayerPed.IsInVehicle())
+                    {
+                        await SetLicensePlateCustomText();
+                        SaveVehicle(currentlySelectedVehicle.Key.Substring(4));
+                        selectedVehicleMenu.GoBack();
+                        Notify.Success("You updated your vehicle's License Plate.");
                     }
                 }
                 else if (item == deleteVehicle)
